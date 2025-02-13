@@ -12,11 +12,12 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import BallotIcon from '@mui/icons-material/Ballot';
 
 
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ['HOME', 'Completed', 'Blog'];
+const settings = ['Account', 'My Todo', 'Logout'];
 
 export default function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -41,7 +42,7 @@ export default function Navbar() {
     <AppBar sx={{ bgcolor: "#3949AB" }} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <BallotIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -94,7 +95,6 @@ export default function Navbar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
