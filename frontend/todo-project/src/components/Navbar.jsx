@@ -13,11 +13,17 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import BallotIcon from '@mui/icons-material/Ballot';
-
+import { Link } from "react-router-dom";
 
 
 const pages = ['HOME', 'Completed', 'Blog'];
 const settings = ['Account', 'My Todo', 'Logout'];
+
+const navigation = [
+  { name: "Home", href: "/", current: true },
+  { name: "Completed", href: "/completed", current: false },
+  { name: "New-task", href: "/newtask", current: false },
+];
 
 export default function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -88,9 +94,15 @@ export default function Navbar() {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+              {navigation.map((item) => (
+                <MenuItem key={item.name} onClick={handleCloseNavMenu}>
+                  <Typography
+                    component={Link}
+                    to={item.href}
+                    sx={{ textDecoration: 'none', color: 'inherit' }}
+                  >
+                    {item.name}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -113,18 +125,26 @@ export default function Navbar() {
           >
             LOGO
           </Typography>
+          {/* Desktop Navigation */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {navigation.map((item) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block', ":hover": { color: "rgb(55 48 163)", bgcolor: "white" } }}
+                key={item.name}
+                component={Link}
+                to={item.href}
+                sx={{
+                  my: 2,
+                  color: 'white',
+                  display: 'block',
+                  ":hover": { color: "rgb(55 48 163)", bgcolor: "white" }
+                }}
               >
-                {page}
+                {item.name}
               </Button>
             ))}
           </Box>
-          <Button sx={{ my: 2, color: 'white', display: 'block', mr: 2, fontWeight: "bold", ":hover": { color: "rgb(55 48 163)", bgcolor: "white" } }} >Login</Button>
+          <Button component={Link}
+            to="/login" sx={{ my: 2, color: 'white', display: 'block', mr: 2, fontWeight: "bold", ":hover": { color: "rgb(55 48 163)", bgcolor: "white" } }} >Login</Button>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
